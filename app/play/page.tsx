@@ -102,7 +102,7 @@ export default function Play() {
 
       <div className="flex justify-center items-center">
         <button
-          className="button rounded-full w-[20rem] h-[20rem] md:w-[28rem] md:h-[28rem] mt-24 md:mt-0"
+          className="button rounded-full w-[20rem] h-[20rem] md:w-[28rem] md:h-[28rem] mt-8 md:mt-0"
           onClick={onClick}
         />
       </div>
