@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Logout from "../components/logout";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { supabase } from "@/utils/supabase/client";
 
 export default function Play() {
@@ -87,40 +88,47 @@ export default function Play() {
   if (authLoading || isLoading) {
     return (
       <div className="flex font-extrabold items-center justify-center h-screen">
-        <div className="text-9xl text-zinc-400">LOADING</div>
+        <div className="md:text-9xl text-4xl text-zinc-400">LOADING</div>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]">
-        <div className="text-center grid gap-8">
-          <button
-            className="button rounded-full md:w-[32rem] md:h-[32rem] w-96 h-96 hover:scale-[1.01] pt-16"
-            onClick={onClick}
-          ></button>
-          <h1 className="font-extrabold md:text-9xl text-7xl md:p-10 text-zinc-400">
-            {userScore}
-          </h1>
-        </div>
-      </div>
-      <div className="w-full flex justify-center lg:top-[93%] absolute">
-        <h4 className="text-5xl text-zinc-400 font-extrabold pt-6">
+    <div>
+      <div className="flex justify-center w-full truncate p-6">
+        <h3 className="font-extrabold text-zinc-400 md:text-7xl text-4xl p-3 md:p-6">
           {user?.given_name}
-        </h4>
+        </h3>
       </div>
-      <div className="w-full absolute top-[90%] pt-10 pr-10 pl-10 flex justify-between ">
-        <Logout />
+
+      <div className="flex justify-center items-center">
         <button
-          className="button w-64 h-16 font-bold text-2xl text-zinc-400 hover:text-zinc-600 rounded-full flex justify-center"
+          className="button rounded-full w-[20rem] h-[20rem] md:w-[28rem] md:h-[28rem] mt-24 md:mt-0"
+          onClick={onClick}
+        />
+      </div>
+
+      <div className="flex justify-center">
+        <h3 className="font-extrabold text-zinc-400 md:text-7xl text-4xl p-3 md:p-6">
+          {userScore}
+        </h3>
+      </div>
+
+      <div className="fixed bottom-0 w-full flex justify-between p-3 md:p-6">
+        <LogoutLink>
+          <button className="button rounded-full font-bold text-zinc-400 hover:text-zinc-600 w-44 h-12 text-sm md:w-56 md:h-20 md:text-lg">
+            LOG OUT
+          </button>
+        </LogoutLink>
+        <button
+          className="button rounded-full font-bold text-zinc-400 hover:text-zinc-600 w-44 h-12 text-sm md:w-56 md:h-20 md:text-lg"
           onClick={() => {
             router.push("/leaderboard");
           }}
         >
-          <span>LEADERBOARD</span>
+          LEADERBOARD
         </button>
       </div>
-    </>
+    </div>
   );
 }
