@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/utils/supabase/client";
 import Card from "../components/card";
 import { useRouter } from "next/navigation";
+import { CirclePlay } from "lucide-react";
 
 type User = {
   id: number;
@@ -41,36 +42,35 @@ export default function Leaderboard() {
   if (isLoading) {
     return (
       <div className="flex font-extrabold items-center justify-center h-screen">
-        <div className="text-9xl text-zinc-400">LOADING</div>
+        <div className="md:text-9xl text-4xl text-zinc-400">LOADING</div>
       </div>
     );
   }
 
   return (
-    <>
-      <div className="flex font-extrabold justify-center pt-10">
-        <div className="md:text-9xl text-7xl text-zinc-600">LEADERBOARD</div>
+    <div>
+      <div className="fixed p-2 z-50 flex justify-end w-full top-[93%] md:top-[87%]">
+        <button className="button rounded-full font-bold flex justify-center items-center bg-white text-zinc-400 hover:text-zinc-600 w-26 h-26 text-sm md:text-2xl">
+          PLAY
+        </button>
       </div>
-      <div className="flex justify-center pt-24">
-        <div className="grid md:grid-cols-1 gap-5 p-6">
+
+      <div className="flex justify-center p-6">
+        <h3 className="font-extrabold text-zinc-400 md:text-9xl text-4xl pb-6 md:p-0">
+          LEADERBOARD
+        </h3>
+      </div>
+
+      <div className="flex justify-center">
+        <div>
           {users.map((user: User, index: number) => (
-            <div key={user.id}>
+            <div key={user.id} className="flex pb-3 md:pb-4">
               <span>{index + 1}</span>
               <Card user={user} />
             </div>
           ))}
         </div>
       </div>
-      <div className="w-full absolute top-[90%] pt-10 pl-10">
-        <button
-          className="button w-64 h-16 font-bold text-2xl text-zinc-400 hover:text-zinc-600 rounded-full"
-          onClick={() => {
-            router.push("/play");
-          }}
-        >
-          <p>PLAY</p>
-        </button>
-      </div>
-    </>
+    </div>
   );
 }
