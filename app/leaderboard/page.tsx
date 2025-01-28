@@ -50,7 +50,7 @@ export default function Leaderboard() {
   return (
     <div>
       <div className="fixed p-2 z-50 flex justify-end w-full top-[93%] md:top-[87%]">
-        <button className="button rounded-full font-bold flex justify-center items-center bg-white text-zinc-400 hover:text-zinc-600 w-26 h-26 text-sm md:text-2xl">
+        <button onClick={() => {router.push("/play")}}className="button rounded-full font-bold flex justify-center items-center bg-white text-zinc-400 hover:text-zinc-600 w-26 h-26 text-sm md:text-2xl">
           PLAY
         </button>
       </div>
